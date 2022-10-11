@@ -11,16 +11,9 @@ getRandomIntInclusive();
 
 //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-function testCommentLength (str,maxlength) {
-  if (str.length <= maxlength) {
-    return true;
-  }
-
-  return false;
+function testCommentLength (string, length) {
+  return string.length <= length;
 }
 
 testCommentLength();
-
-//https://flexiple.com/javascript/javascript-length/
-//https://learn.javascript.ru/task/truncate
 
