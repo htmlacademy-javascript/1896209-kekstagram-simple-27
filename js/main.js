@@ -1,5 +1,19 @@
+const DESCRIPTIONS = [
+  'С первым снегом!!!',
+  'А сейчас я уже дома',
+  'Были сегодня в парке, посмотрите на эту белку!',
+  'Наша семья',
+  'Наконец-то в отпуск!',
+  'С пополнением нас!',
+  'Простой вид из окна',
+  'Они говорили завести кота, чтобы скучно не было...',
+  'Сфотографировала молнию прошлой ночью. Успела',
+  'Купили новые обои, обновляем интерьер',
+  'Ходили по ягоды с бабулей',
+];
+
 function getRandomIntInclusive (min,max) {
-  if (min > 0, min < max) {
+  if (min >= 0 && min < max) {//Если ноль не включать, то description: undefined, comments: NaN.
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -7,20 +21,19 @@ function getRandomIntInclusive (min,max) {
   return NaN;
 }
 
-getRandomIntInclusive();
+function mockPhoto (_, index) {
+  const id = index + 1;
 
-//https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-
-function testCommentLength (str,maxlength) {
-  if (str.length <= maxlength) {
-    return true;
-  }
-
-  return false;
+  return {
+    id,
+    url: `photos/${id}.jpg`,
+    description: DESCRIPTIONS[getRandomIntInclusive(0,DESCRIPTIONS.length - 1)],
+    likes: getRandomIntInclusive(15,200),
+    comments: getRandomIntInclusive(0,200),
+  };
 }
 
-testCommentLength();
+const photos = Array.from ({ length: 25}, mockPhoto);
 
-//https://flexiple.com/javascript/javascript-length/
-//https://learn.javascript.ru/task/truncate
-
+// eslint-disable-next-line no-console
+console.log(photos);
