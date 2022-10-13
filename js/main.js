@@ -35,4 +35,5 @@ function mockPhoto (_, index) {
 
 const photos = Array.from ({ length: 25}, mockPhoto);
 
+// eslint-disable-next-line no-console
 console.log(photos);
