@@ -1,10 +1,12 @@
-function getRandomIntInclusive (min,max) {
-  if (min >= 0 && min < max) { //Если ноль не включать, то description: undefined, comments: NaN.
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function getRandomIntInclusive (a, b) {
+  if (a < 0 || b < 0) {
+    return NaN;
   }
-  return NaN;
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
 }
 
 function testCommentLength (string, length) {
