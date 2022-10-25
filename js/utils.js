@@ -13,4 +13,4 @@ function testCommentLength (string, length) {
   return string.length <= length;
 }
 
-export { getRandomIntInclusive, testCommentLength};
+export { getRandomIntInclusive, testCommentLength };

@@ -26,6 +26,6 @@ function mockPhoto (_, index) {
   };
 }
 
-const photos = () => Array.from ({ length: 25}, mockPhoto);
+const mockPhotos = () => Array.from ({ length: 25}, mockPhoto);
 
-export { photos };
+export { mockPhotos };
