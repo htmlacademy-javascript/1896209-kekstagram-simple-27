@@ -13,4 +13,6 @@ function testCommentLength (string, length) {
   return string.length <= length;
 }
 
-export { getRandomIntInclusive, testCommentLength };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getRandomIntInclusive, testCommentLength, isEscapeKey };
