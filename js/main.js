@@ -1,2 +1,2 @@
 import './random-photo-user.js';
-import './data.js';
+import './upload-user-img.js';
