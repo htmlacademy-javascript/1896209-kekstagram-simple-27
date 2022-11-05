@@ -32,4 +32,4 @@ function addImageEffect ({target: {value}}) {
 }
 
 effectsList.addEventListener('change', addImageEffect);
-effectsList.addEventListener('keydown', addImageEffect);
+
