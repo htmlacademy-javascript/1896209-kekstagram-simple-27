@@ -7,10 +7,15 @@ const buttonBigger = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
-let newScaleValue = parseInt(scaleValue.value, 10);
+buttonSmaller.addEventListener ('click', getSmallerSize);
+buttonBigger.addEventListener('click', getBiggerSize);
 
+function getCurrentValue () {
+  return parseInt(scaleValue.value, 10);
+}
 
 function getSmallerSize () {
+  let newScaleValue = getCurrentValue();
   if (newScaleValue > MINVALUE) {
     newScaleValue -= STEP;
     scaleValue.value = `${newScaleValue}%`;
@@ -19,6 +24,7 @@ function getSmallerSize () {
 }
 
 function getBiggerSize () {
+  let newScaleValue = getCurrentValue();
   if (newScaleValue < MAXVALUE) {
     newScaleValue += STEP;
     scaleValue.value = `${newScaleValue}%`;
@@ -26,6 +32,6 @@ function getBiggerSize () {
   }
 }
 
-buttonSmaller.addEventListener ('click', getSmallerSize);
-buttonBigger.addEventListener('click', getBiggerSize);
-
+export function resetSizeSettings () {
+  imagePreview.style.transform = '';
+}

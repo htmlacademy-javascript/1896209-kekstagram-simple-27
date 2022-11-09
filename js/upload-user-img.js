@@ -1,4 +1,6 @@
 import { isEscapeKey } from './utils.js';
+import { resetEffectSettings } from './image-effects.js';
+import { resetSizeSettings } from './image-size.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const userImgModalElement = uploadForm.querySelector('.img-upload__overlay');
@@ -22,6 +24,8 @@ function openUserModal () {
 function closeUserModal () {
   userImgModalElement.classList.add('hidden');
   body.classList.remove('modal-open');
+  resetEffectSettings();
+  resetSizeSettings();
 
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
