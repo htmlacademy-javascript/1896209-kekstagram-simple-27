@@ -1,16 +1,17 @@
 import {showPhotoUploadError} from './utils.js';
-import {renderPicturesList} from './random-photo-user.js';
 
-const getData = () => {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
+const BASE_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
+
+const getData = (onSuccess) => {
+  fetch(`${BASE_URL}/data`)
     .then((response) => response.json())
-    .then((data) => {renderPicturesList(data);})
+    .then(onSuccess)
     .catch(() => {showPhotoUploadError('Ошибка загрузки изображений');});
 };
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://27.javascript.pages.academy/kekstagram-simple',
+    BASE_URL,
     {
       method: 'POST',
       'Content-Type': 'multipart/form-data',

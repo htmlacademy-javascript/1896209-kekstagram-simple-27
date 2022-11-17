@@ -45,23 +45,19 @@ function unblockSubmitButton () {
   submitButton.textContent = 'Опубликовать';
 }
 
-function setUserFormSubmit (onSuccess) {
-  uploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    blockSubmitButton();
-    sendData(
-      evt,
-      () => {
-        onSuccess();
-        unblockSubmitButton();
-      },
-      () => {
-        showPhotoUploadError('Ошибка загрузки изображений');
-        unblockSubmitButton();
-      },
-      new FormData(evt.target),
-    );
-  });
-}
-
-export {setUserFormSubmit, closeUserModal};
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  blockSubmitButton();
+  sendData(
+    () => {
+      // onSuccess();
+      unblockSubmitButton();
+      uploadForm.reset();
+    },
+    () => {
+      showPhotoUploadError('Ошибка загрузки изображений');
+      unblockSubmitButton();
+    },
+    new FormData(uploadForm),
+  );
+});
