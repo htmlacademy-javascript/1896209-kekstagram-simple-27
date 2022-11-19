@@ -2,14 +2,14 @@ import {showPhotoUploadError} from './utils.js';
 
 const BASE_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
 
-const getData = (onSuccess) => {
+function getData (onSuccess) {
   fetch(`${BASE_URL}/data`)
     .then((response) => response.json())
     .then(onSuccess)
     .catch(() => {showPhotoUploadError('Ошибка загрузки изображений');});
-};
+}
 
-const sendData = (onSuccess, body) => {
+function sendData (onSuccess, body) {
   fetch(
     BASE_URL,
     {
@@ -29,6 +29,6 @@ const sendData = (onSuccess, body) => {
     .catch(() => {
       showPhotoUploadError('Ошибка загрузки изображений');
     });
-};
+}
 
 export {getData, sendData};

@@ -10,12 +10,12 @@ const {body} = document;
 const userImgModalOpenElement = uploadForm.querySelector('#upload-file');
 const submitButton = uploadForm.querySelector('#upload-submit');
 
-const onPopupEscKeydown = (evt) => {
+function onPopupEscKeydown (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     uploadForm.reset();
   }
-};
+}
 
 userImgModalOpenElement.addEventListener('change', openUserModal);
 uploadForm.addEventListener('reset', closeUserModal);

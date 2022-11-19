@@ -1,4 +1,5 @@
 const ALERT_SHOW_TIME = 5000;
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 function getRandomIntInclusive (a, b) {
   if (a < 0 || b < 0) {
@@ -15,9 +16,7 @@ function testCommentLength (string, length) {
   return string.length <= length;
 }
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
-
-const showPhotoUploadError = (message) => {
+function showPhotoUploadError (message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
@@ -38,6 +37,6 @@ const showPhotoUploadError = (message) => {
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
-};
+}
 
 export {getRandomIntInclusive, testCommentLength, isEscapeKey, showPhotoUploadError};

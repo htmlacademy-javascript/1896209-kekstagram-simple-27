@@ -11,6 +11,6 @@ function addImageEffect ({target: {value: effectName}}) {
   updateSlider();
 }
 
-export function resetEffectSettings() {
+export function resetEffectSettings () {
   imagePreview.classList = '';
 }

@@ -1,10 +1,12 @@
 import {isEscapeKey} from './utils.js';
 
-const alertSuccess = () => {
-  const pageBody = document.querySelector('body');
-  const successContent = document.querySelector('#success').content;
-  const successElement = successContent.querySelector('.success');
+const pageBody = document.querySelector('body');
+const successContent = document.querySelector('#success').content;
+const successElement = successContent.querySelector('.success');
+const errorContent = document.querySelector('#error').content;
+const errorElement = errorContent.querySelector('.error');
 
+function alertSuccess () {
   const cloneSuccessElement = successElement.cloneNode(true);
   const newSuccessElement = pageBody.appendChild(cloneSuccessElement);
 
@@ -18,14 +20,11 @@ const alertSuccess = () => {
   document.addEventListener('click', () => {
     newSuccessElement.remove();
   });
-};
+}
 
-const alertError = () => {
-  const pageBody = document.querySelector('body');
-  const errorContent = document.querySelector('#error').content;
-  const errorElement = errorContent.querySelector('.error');
-
-  const newErrorElement = pageBody.appendChild(errorElement);
+function alertError () {
+  const cloneErrorElement = errorElement.cloneNode(true);
+  const newErrorElement = pageBody.appendChild(cloneErrorElement);
 
   document.addEventListener('keydown', (evt) => {
     if (isEscapeKey(evt)) {
@@ -37,6 +36,6 @@ const alertError = () => {
   document.addEventListener('click', () => {
     newErrorElement.remove();
   });
-};
+}
 
 export {alertSuccess, alertError};

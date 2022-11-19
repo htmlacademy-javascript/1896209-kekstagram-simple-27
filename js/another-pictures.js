@@ -3,7 +3,7 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const renderPicturesList = (picturesListUser) => {
+function renderPicturesList (picturesListUser) {
   const picturesListFragment = document.createDocumentFragment();
 
   picturesListUser.forEach(({url, likes, comments}) => {
@@ -15,7 +15,7 @@ const renderPicturesList = (picturesListUser) => {
     picturesListFragment.appendChild(pictureElement);
   });
   picturesList.appendChild(picturesListFragment);
-};
+}
 
 export {renderPicturesList};
 
