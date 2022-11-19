@@ -2,7 +2,7 @@ import {isEscapeKey} from './utils.js';
 import {resetEffectSettings} from './image-effects.js';
 import {resetSizeSettings} from './image-size.js';
 import {sendData} from './api.js';
-import {showPhotoUploadError} from './utils.js';
+import {alertSuccess, alertError} from './alert.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const userImgModalElement = uploadForm.querySelector('.img-upload__overlay');
@@ -44,20 +44,19 @@ function unblockSubmitButton () {
   submitButton.disabled = false;
   submitButton.textContent = 'Опубликовать';
 }
+function sendUserFormSubmit () {
+  uploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    blockSubmitButton();
+    sendData(
+      () => {
+        alertSuccess();
+        unblockSubmitButton();
+        uploadForm.reset();
+      },
+      new FormData(uploadForm),
+    );
+  });
+}
 
-uploadForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  blockSubmitButton();
-  sendData(
-    () => {
-      // onSuccess();
-      unblockSubmitButton();
-      uploadForm.reset();
-    },
-    () => {
-      showPhotoUploadError('Ошибка загрузки изображений');
-      unblockSubmitButton();
-    },
-    new FormData(uploadForm),
-  );
-});
+sendUserFormSubmit(alertError);

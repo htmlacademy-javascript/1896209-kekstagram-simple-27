@@ -9,7 +9,7 @@ const getData = (onSuccess) => {
     .catch(() => {showPhotoUploadError('Ошибка загрузки изображений');});
 };
 
-const sendData = (onSuccess, onFail, body) => {
+const sendData = (onSuccess, body) => {
   fetch(
     BASE_URL,
     {
@@ -23,11 +23,11 @@ const sendData = (onSuccess, onFail, body) => {
         onSuccess();
       }
       else {
-        onFail(showPhotoUploadError('Ошибка загрузки изображений'));
+        showPhotoUploadError('Ошибка загрузки изображений');
       }
     })
     .catch(() => {
-      onFail(showPhotoUploadError('Ошибка загрузки изображений'));
+      showPhotoUploadError('Ошибка загрузки изображений');
     });
 };
 
