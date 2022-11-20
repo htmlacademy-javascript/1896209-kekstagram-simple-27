@@ -1,6 +1,6 @@
 import {isEscapeKey} from './utils.js';
-import {resetEffectSettings} from './image-effects.js';
-import {resetSizeSettings} from './image-size.js';
+import {resetEffectSettings} from './effects.js';
+import {resetSizeSettings} from './size.js';
 import {sendData} from './api.js';
 import {alertSuccess, alertError} from './alert.js';
 
@@ -23,7 +23,6 @@ uploadForm.addEventListener('reset', closeUserModal);
 function openUserModal () {
   userImgModalElement.classList.remove('hidden');
   body.classList.add('modal-open');
-
   document.addEventListener('keydown', onPopupEscKeydown);
 }
 
@@ -32,7 +31,6 @@ function closeUserModal () {
   body.classList.remove('modal-open');
   resetEffectSettings();
   resetSizeSettings();
-
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
