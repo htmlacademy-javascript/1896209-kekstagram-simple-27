@@ -1,21 +1,6 @@
 const ALERT_SHOW_TIME = 5000;
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-function getRandomIntInclusive (a, b) {
-  if (a < 0 || b < 0) {
-    return NaN;
-  }
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
-}
-
-function testCommentLength (string, length) {
-  return string.length <= length;
-}
-
 function showPhotoUploadError (message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -39,4 +24,4 @@ function showPhotoUploadError (message) {
   }, ALERT_SHOW_TIME);
 }
 
-export {getRandomIntInclusive, testCommentLength, isEscapeKey, showPhotoUploadError};
+export {isEscapeKey, showPhotoUploadError};
