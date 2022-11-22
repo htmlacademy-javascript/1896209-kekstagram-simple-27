@@ -42,19 +42,20 @@ function unblockSubmitButton () {
   submitButton.disabled = false;
   submitButton.textContent = 'Опубликовать';
 }
-function sendUserFormSubmit () {
-  uploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    blockSubmitButton();
-    sendData(
-      () => {
-        alertSuccess();
-        unblockSubmitButton();
-        uploadForm.reset();
-      },
-      new FormData(uploadForm),
-    );
-  });
-}
 
-sendUserFormSubmit(alertError);
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  blockSubmitButton();
+  sendData(
+    () => {
+      unblockSubmitButton();
+      alertSuccess();
+    },
+    () => {
+      unblockSubmitButton();
+      alertError();
+    },
+    uploadForm.reset(),
+    new FormData(uploadForm),
+  );
+});

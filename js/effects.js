@@ -124,5 +124,6 @@ uploadForm.addEventListener('change', (evt) => {
 
 export function resetEffectSettings () {
   imagePreview.classList = '';
+  imagePreview.style = '';
   slider.classList.add('hidden');
 }
