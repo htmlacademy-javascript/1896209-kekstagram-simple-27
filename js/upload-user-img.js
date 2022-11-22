@@ -31,7 +31,7 @@ function closeUserModal () {
   body.classList.remove('modal-open');
   resetEffectSettings();
   resetSizeSettings();
-  document.removeEventListener('keydown', onPopupEscKeydown);
+  document.addEventListener('keydown', onPopupEscKeydown);
 }
 
 function blockSubmitButton () {
@@ -55,6 +55,7 @@ uploadForm.addEventListener('submit', (evt) => {
     () => {
       alertError();
       unblockSubmitButton();
+      document.removeEventListener('keydown', onPopupEscKeydown);
     },
     new FormData(uploadForm),
   );
