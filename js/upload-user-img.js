@@ -48,13 +48,12 @@ uploadForm.addEventListener('submit', (evt) => {
   blockSubmitButton();
   sendData(
     () => {
-      unblockSubmitButton();
       alertSuccess();
     },
     () => {
-      unblockSubmitButton();
       alertError();
     },
+    unblockSubmitButton(),
     uploadForm.reset(),
     new FormData(uploadForm),
   );

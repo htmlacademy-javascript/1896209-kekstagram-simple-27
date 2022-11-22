@@ -24,6 +24,8 @@ function sendData (onSuccess, body) {
       }
       else {
         showPhotoUploadError('Ошибка загрузки изображений');
+        // eslint-disable-next-line no-console
+        console.log('mew');
       }
     })
     .catch(() => {
