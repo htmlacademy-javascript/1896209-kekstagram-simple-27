@@ -1,4 +1,7 @@
-import './random-photo-user.js';
+import {renderPicturesList} from './another-pictures.js';
+import {getData} from './api.js';
 import './upload-user-img.js';
-import './image-size.js';
-import './image-effects.js';
+
+
+getData(renderPicturesList);
+
