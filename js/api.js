@@ -9,7 +9,7 @@ function getData (onSuccess) {
     .catch(() => {showPhotoUploadError('Ошибка загрузки изображений');});
 }
 
-function sendData (onSuccess, body) {
+function sendData (onSuccess, onFail, body) {
   fetch(
     BASE_URL,
     {
@@ -23,13 +23,11 @@ function sendData (onSuccess, body) {
         onSuccess();
       }
       else {
-        showPhotoUploadError('Ошибка загрузки изображений');
-        // eslint-disable-next-line no-console
-        console.log('mew');
+        onFail();
       }
     })
     .catch(() => {
-      showPhotoUploadError('Ошибка загрузки изображений');
+      onFail();
     });
 }
 
