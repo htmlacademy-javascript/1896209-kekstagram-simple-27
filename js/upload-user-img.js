@@ -10,7 +10,7 @@ const {body} = document;
 const userImgModalOpenElement = uploadForm.querySelector('#upload-file');
 const submitButton = uploadForm.querySelector('#upload-submit');
 
-function onPopupEscKeydown (evt) {
+function onModalKeydownEsc (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     uploadForm.reset();
@@ -23,7 +23,7 @@ uploadForm.addEventListener('reset', closeUserModal);
 function openUserModal () {
   userImgModalElement.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onPopupEscKeydown);
+  document.addEventListener('keydown', onModalKeydownEsc);
 }
 
 function closeUserModal () {
@@ -31,7 +31,7 @@ function closeUserModal () {
   body.classList.remove('modal-open');
   resetEffectSettings();
   resetSizeSettings();
-  document.addEventListener('keydown', onPopupEscKeydown);
+  document.removeEventListener('keydown', onModalKeydownEsc);
 }
 
 function blockSubmitButton () {
@@ -55,7 +55,7 @@ uploadForm.addEventListener('submit', (evt) => {
     () => {
       alertError();
       unblockSubmitButton();
-      document.removeEventListener('keydown', onPopupEscKeydown);
+      document.removeEventListener('keydown', onModalKeydownEsc);
     },
     new FormData(uploadForm),
   );

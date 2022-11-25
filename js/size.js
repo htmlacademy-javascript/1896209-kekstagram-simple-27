@@ -7,14 +7,14 @@ const buttonBigger = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
 const imagePreview = document.querySelector('.img-upload__preview img');
 
-buttonSmaller.addEventListener ('click', getSmallerSize);
-buttonBigger.addEventListener('click', getBiggerSize);
+buttonSmaller.addEventListener ('click', makePhotoSmaller);
+buttonBigger.addEventListener('click', makePhotoBigger);
 
 function getCurrentValue () {
   return parseInt(scaleValue.value, 10);
 }
 
-function getSmallerSize () {
+function makePhotoSmaller () {
   let newScaleValue = getCurrentValue();
   if (newScaleValue > MINVALUE) {
     newScaleValue -= STEP;
@@ -23,7 +23,7 @@ function getSmallerSize () {
   }
 }
 
-function getBiggerSize () {
+function makePhotoBigger () {
   let newScaleValue = getCurrentValue();
   if (newScaleValue < MAXVALUE) {
     newScaleValue += STEP;

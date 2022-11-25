@@ -6,10 +6,10 @@ const noneEffect = document.querySelector('#effect-none');
 const imagePreview = document.querySelector('.img-upload__preview img');
 const effectsList = document.querySelector('.effects__list');
 
-effectsList.addEventListener('change', addImageEffect);
+effectsList.addEventListener('change', onImageAddEffect);
 effectsList.addEventListener('keydown', resetEffectSettings);
 
-function addImageEffect ({target: {value: effectName}}) {
+function onImageAddEffect ({target: {value: effectName}}) {
   imagePreview.classList = '';
   imagePreview.classList.add(`effects__preview--${effectName}`);
 }
@@ -43,84 +43,84 @@ sliderElement.noUiSlider.on('update', () => {
   valueElement.value = sliderElement.noUiSlider.get();
 });
 
-uploadForm.addEventListener('change', (evt) => {
-  if (evt.target.checked) {
-    if (evt.target.value === 'none') {
-      imagePreview.style.filter = '';
-      hideSlider();
-    }
-    if (evt.target.value === 'chrome') {
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 1,
-        },
-        start: 1,
-        step: 0.1,
-      });
-      showSlider();
-      sliderElement.noUiSlider.on('update', () => {
-        imagePreview.style.filter = `grayscale(${sliderElement.noUiSlider.get()})`;
-      });
-    }
-    if (evt.target.value === 'sepia') {
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 1,
-        },
-        start: 1,
-        step: 0.1,
-      });
-      showSlider();
-      sliderElement.noUiSlider.on('update', () => {
-        imagePreview.style.filter = `sepia(${sliderElement.noUiSlider.get()})`;
-      });
-    }
-    if (evt.target.value === 'marvin') {
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 100,
-        },
-        start: 100,
-        step: 1,
-      });
-      showSlider();
-      sliderElement.noUiSlider.on('update', () => {
-        imagePreview.style.filter = `invert(${sliderElement.noUiSlider.get()}%)`;
-      });
-    }
-    if (evt.target.value === 'phobos') {
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 3,
-        },
-        start: 3,
-        step: 0.1,
-      });
-      showSlider();
-      sliderElement.noUiSlider.on('update', () => {
-        imagePreview.style.filter = `blur(${sliderElement.noUiSlider.get()}px)`;
-      });
-    }
-    if (evt.target.value === 'heat') {
-      sliderElement.noUiSlider.updateOptions({
-        range: {
-          min: 1,
-          max: 3,
-        },
-        start: 3,
-        step: 0.1,
-      });
-      showSlider();
-      sliderElement.noUiSlider.on('update', () => {
-        imagePreview.style.filter = `brightness(${sliderElement.noUiSlider.get()})`;
-      });
-    }
+function changeSliderEffects (evt) {
+  if (evt.target.value === 'none') {
+    imagePreview.style.filter = '';
+    hideSlider();
   }
-});
+  if (evt.target.value === 'chrome') {
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+    });
+    showSlider();
+    sliderElement.noUiSlider.on('update', () => {
+      imagePreview.style.filter = `grayscale(${valueElement.value})`;
+    });
+  }
+  if (evt.target.value === 'sepia') {
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+    });
+    showSlider();
+    sliderElement.noUiSlider.on('update', () => {
+      imagePreview.style.filter = `sepia(${valueElement.value})`;
+    });
+  }
+  if (evt.target.value === 'marvin') {
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 0,
+        max: 100,
+      },
+      start: 100,
+      step: 1,
+    });
+    showSlider();
+    sliderElement.noUiSlider.on('update', () => {
+      imagePreview.style.filter = `invert(${valueElement.value}%)`;
+    });
+  }
+  if (evt.target.value === 'phobos') {
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 0,
+        max: 3,
+      },
+      start: 3,
+      step: 0.1,
+    });
+    showSlider();
+    sliderElement.noUiSlider.on('update', () => {
+      imagePreview.style.filter = `blur(${valueElement.value}px)`;
+    });
+  }
+  if (evt.target.value === 'heat') {
+    sliderElement.noUiSlider.updateOptions({
+      range: {
+        min: 1,
+        max: 3,
+      },
+      start: 3,
+      step: 0.1,
+    });
+    showSlider();
+    sliderElement.noUiSlider.on('update', () => {
+      imagePreview.style.filter = `brightness(${valueElement.value})`;
+    });
+  }
+}
+
+uploadForm.addEventListener('change', changeSliderEffects);
 
 export function resetEffectSettings () {
   imagePreview.classList = '';
