@@ -6,10 +6,10 @@ const noneEffect = document.querySelector('#effect-none');
 const imagePreview = document.querySelector('.img-upload__preview img');
 const effectsList = document.querySelector('.effects__list');
 
-effectsList.addEventListener('change', onImageAddEffect);
+effectsList.addEventListener('change', onEffectsListChange);
 effectsList.addEventListener('keydown', resetEffectSettings);
 
-function onImageAddEffect ({target: {value: effectName}}) {
+function onEffectsListChange ({target: {value: effectName}}) {
   imagePreview.classList = '';
   imagePreview.classList.add(`effects__preview--${effectName}`);
 }
@@ -43,7 +43,7 @@ sliderElement.noUiSlider.on('update', () => {
   valueElement.value = sliderElement.noUiSlider.get();
 });
 
-function changeSliderEffects (evt) {
+function onUploadFormChange (evt) {
   if (evt.target.value === 'none') {
     imagePreview.style.filter = '';
     hideSlider();
@@ -119,8 +119,8 @@ function changeSliderEffects (evt) {
     });
   }
 }
-
-uploadForm.addEventListener('change', changeSliderEffects);
+sliderElement.noUiSlider.off('update', onUploadFormChange);
+uploadForm.addEventListener('change', onUploadFormChange);
 
 export function resetEffectSettings () {
   imagePreview.classList = '';
