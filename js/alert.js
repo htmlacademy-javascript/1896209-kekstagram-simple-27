@@ -11,7 +11,7 @@ function alertSuccess () {
   const newSuccessElement = pageBody.appendChild(cloneSuccessElement);
 
   function removeEventSuccess () {
-    document.removeEventListener('keydown', onDocumentSuccessKeydown);
+    document.removeEventListener('keydown', onDocumentKeydownEscSuccess);
     document.removeEventListener('click', deleteSuccessAlert);
   }
 
@@ -20,7 +20,7 @@ function alertSuccess () {
     removeEventSuccess();
   }
 
-  function onDocumentSuccessKeydown (evt) {
+  function onDocumentKeydownEscSuccess (evt) {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
       newSuccessElement.remove();
@@ -28,7 +28,7 @@ function alertSuccess () {
     }
   }
 
-  document.addEventListener('keydown', onDocumentSuccessKeydown);
+  document.addEventListener('keydown', onDocumentKeydownEscSuccess);
   document.addEventListener('click', deleteSuccessAlert);
 }
 
@@ -37,7 +37,7 @@ function alertError () {
   const newErrorElement = pageBody.appendChild(cloneErrorElement);
 
   function removeEventError () {
-    document.removeEventListener('keydown', onDocumentErrorEscKeydown);
+    document.removeEventListener('keydown', onDocumentKeydownEscError);
     document.removeEventListener('click', deleteErrorAlert);
   }
 
@@ -46,7 +46,7 @@ function alertError () {
     removeEventError();
   }
 
-  function onDocumentErrorEscKeydown (evt) {
+  function onDocumentKeydownEscError (evt) {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
       newErrorElement.remove();
@@ -54,7 +54,7 @@ function alertError () {
     }
   }
 
-  document.addEventListener('keydown', onDocumentErrorEscKeydown);
+  document.addEventListener('keydown', onDocumentKeydownEscError);
   document.addEventListener('click', deleteErrorAlert);
 }
 
